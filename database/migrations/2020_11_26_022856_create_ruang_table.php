@@ -16,7 +16,8 @@ class CreateRuangTable extends Migration
         Schema::create('ruang', function (Blueprint $table) {
             $table->id('id_ruang');
             $table->string('nama_ruang');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 

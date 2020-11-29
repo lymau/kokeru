@@ -17,7 +17,8 @@ class CreateBuktiTable extends Migration
             $table->id('id_bukti');
             $table->foreignId('id_laporan');
             $table->string('nama_file');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 
             $table->foreign('id_laporan')
                 ->references('id_laporan')

@@ -17,7 +17,8 @@ class CreateJadwalTable extends Migration
             $table->id('id_jadwal');
             $table->foreignId('id_ruang');
             $table->foreignId('id_user');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 
             $table->foreign('id_ruang')
                 ->references('id_ruang')
