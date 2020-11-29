@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
 
 class RuangSeeder extends Seeder
 {
@@ -15,8 +14,6 @@ class RuangSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('id_ID');
-
     	for($i = 1; $i <= 80; $i++){ 
     	    // insert data ke table user menggunakan Faker
     		DB::table('ruang')->insert([

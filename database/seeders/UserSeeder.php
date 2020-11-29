@@ -25,5 +25,22 @@ class UserSeeder extends Seeder
                 'password' => $faker->password
             ]);
         }
+
+        // manajer
+        DB::table('users')->insert([
+            'nama_user' => 'Manajer',
+            'email' => 'manajer@gmail.com',
+            'password' => 'admin1234',
+            'manajer' => true
+        ]);
+
+        // user
+        // manajer
+        DB::table('users')->insert([
+            'nama_user' => 'cs',
+            'email' => 'cs@gmail.com',
+            'password' => 'cs1234',
+            'manajer' => false
+        ]);
     }
 }
