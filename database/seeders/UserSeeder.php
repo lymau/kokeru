@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'nama_user' => 'Manajer',
             'email' => 'manajer@gmail.com',
-            'password' => 'admin1234',
+            'password' => bcrypt('admin1234'),
             'manajer' => true
         ]);
 
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'nama_user' => 'cs',
             'email' => 'cs@gmail.com',
-            'password' => 'cs1234',
+            'password' => bcrypt('cs1234'),
             'manajer' => false
         ]);
     }

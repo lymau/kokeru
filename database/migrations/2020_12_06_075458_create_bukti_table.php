@@ -15,15 +15,9 @@ class CreateBuktiTable extends Migration
     {
         Schema::create('bukti', function (Blueprint $table) {
             $table->id('id_bukti');
-            $table->foreignId('id_laporan');
+            $table->unsignedBigInteger('id_laporan')->constrained()->onDelete('cascade');
             $table->string('nama_file');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
-
-            $table->foreign('id_laporan')
-                ->references('id_laporan')
-                ->on('laporan')
-                ->onDelete('CASCADE');
+            $table->timestamps();
         });
     }
 

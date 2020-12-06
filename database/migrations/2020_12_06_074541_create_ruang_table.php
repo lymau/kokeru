@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateRuangTable extends Migration
 {
@@ -17,8 +17,7 @@ class CreateRuangTable extends Migration
         Schema::create('ruang', function (Blueprint $table) {
             $table->id('id_ruang');
             $table->string('nama_ruang');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
 
         Artisan::call('db:seed', [

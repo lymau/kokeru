@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('pages.home');
 });
+
+// auth
+Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
+Route::post('/login', [LoginController::class, 'store']);
+
+// dashboard manajer
+Route::get('/manajer/dashboard', function(){
+    return view('manajer.dashboard');
+})->name('manajer.dashboard');
+
+// dashboard cs
+Route::get('/cs/dashboard', function(){
+    return view('cs.dashboard');
+})->name('cs.dashboard');

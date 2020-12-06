@@ -15,15 +15,9 @@ class CreateLaporanTable extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->id('id_laporan');
-            $table->foreignId('id_jadwal');
+            $table->unsignedBigInteger('id_jadwal')->constrained()->onDelete('cascade');
             $table->boolean('status')->default(false);
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
-
-            $table->foreign('id_jadwal')
-                ->references('id_jadwal')
-                ->on('jadwal')
-                ->onDelete('CASCADE');
+            $table->timestamps();
         });
     }
 
