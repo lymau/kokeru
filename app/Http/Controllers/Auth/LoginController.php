@@ -23,7 +23,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         // sign the user in
-        if (auth()->attempt($request->only('email', 'password'))){
+        if (auth()->attempt($request->only('email', 'password'), $request->remember)){
             // if he's manajer
             if (auth()->user()->manajer){
                 return redirect()->route('manajer.dashboard');

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,10 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function() {
     return view('pages.home');
-});
+})->name('pages.home');
+
+// logout
+Route::post('/logout', [LogoutController::class, 'store'])->name('auth.logout');
 
 // auth
 Route::get('/login', [LoginController::class, 'index'])->name('auth.login');

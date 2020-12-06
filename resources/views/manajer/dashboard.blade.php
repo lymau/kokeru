@@ -8,5 +8,11 @@
 </head>
 <body>
     This is dashboard manajer
+@auth
+    <form action="{{ route('auth.logout') }}" method="POST">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
+@endauth
 </body>
 </html>
