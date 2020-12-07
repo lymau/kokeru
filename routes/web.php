@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\RuangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +21,20 @@ Route::get('/', function() {
 })->name('pages.home');
 
 // logout
-Route::post('/logout', [LogoutController::class, 'store'])->name('auth.logout');
+Route::get('/logout', [LogoutController::class, 'store'])->name('auth.logout');
 
 // auth
 Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
 Route::post('/login', [LoginController::class, 'store']);
 
-// dashboard manajer
-Route::get('/manajer/dashboard', function(){
+// halaman manajer
+Route::get('/manajer', function(){
     return view('manajer.dashboard');
 })->name('manajer.dashboard');
+Route::get('/manajer/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
+Route::resource('ruang', RuangController::class);
 
 // dashboard cs
-Route::get('/cs/dashboard', function(){
+Route::get('/cs', function(){
     return view('cs.dashboard');
 })->name('cs.dashboard');
