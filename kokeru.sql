@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Des 2020 pada 11.17
+-- Waktu pembuatan: 09 Des 2020 pada 13.51
 -- Versi server: 10.4.16-MariaDB
 -- Versi PHP: 7.4.12
 
@@ -61,9 +61,24 @@ CREATE TABLE `jadwal` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_user` bigint(20) UNSIGNED NOT NULL,
   `id_ruang` bigint(20) UNSIGNED NOT NULL,
+  `tanggal` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `jadwal`
+--
+
+INSERT INTO `jadwal` (`id`, `id_user`, `id_ruang`, `tanggal`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2020-12-09', '2020-12-09 10:34:28', '2020-12-09 10:34:31'),
+(2, 1, 2, '2020-12-09', '2020-12-09 10:34:50', '2020-12-09 10:34:52'),
+(3, 1, 3, '2020-12-09', '2020-12-09 10:35:20', '2020-12-09 10:35:24'),
+(4, 1, 4, '2020-12-09', '2020-12-09 10:35:40', '2020-12-09 10:35:43'),
+(5, 2, 5, '2020-12-09', '2020-12-09 10:36:29', '2020-12-09 10:36:34'),
+(6, 2, 6, '2020-12-09', '2020-12-09 10:36:26', NULL),
+(7, 2, 7, '2020-12-09', '2020-12-09 10:36:38', NULL),
+(8, 2, 8, '2020-12-09', '2020-12-09 10:36:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -78,6 +93,20 @@ CREATE TABLE `laporan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `laporan`
+--
+
+INSERT INTO `laporan` (`id`, `id_jadwal`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, '2020-12-09 10:42:44', NULL),
+(2, 2, 0, '2020-12-09 10:42:50', NULL),
+(3, 3, 0, '2020-12-09 10:42:53', NULL),
+(4, 4, 0, '2020-12-09 10:42:56', NULL),
+(5, 5, 0, '2020-12-09 10:42:59', NULL),
+(6, 6, 0, '2020-12-09 10:43:01', NULL),
+(7, 7, 0, '2020-12-09 10:43:29', NULL),
+(8, 8, 0, '2020-12-09 10:43:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -343,13 +372,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
