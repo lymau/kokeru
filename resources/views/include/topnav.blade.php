@@ -33,7 +33,7 @@
               @if(Auth::user()->manajer)
                 <a href="manajer/profil" class="dropdown-item">
               @else
-                <a href="cs/profil" class="dropdown-item">
+                <a href="{{ route('cs.profil') }}" class="dropdown-item">
               @endif
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
