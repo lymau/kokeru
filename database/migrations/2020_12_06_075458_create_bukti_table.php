@@ -13,9 +13,12 @@ class CreateBuktiTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('bukti', function (Blueprint $table) {
-            $table->id('id_bukti');
-            $table->unsignedBigInteger('id_laporan')->constrained()->onDelete('cascade');
+            $table->id();
+            $table->unsignedBigInteger('id_laporan');
+            $table->foreign('id_laporan')->references('id')->on('laporan')
+                ->onUpdate('cascade')->onDelete('cascade');            
             $table->string('nama_file');
             $table->timestamps();
         });

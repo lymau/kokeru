@@ -14,8 +14,9 @@ class CreateRuangTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('ruang', function (Blueprint $table) {
-            $table->id('id_ruang');
+            $table->id();
             $table->string('nama_ruang');
             $table->timestamps();
         });

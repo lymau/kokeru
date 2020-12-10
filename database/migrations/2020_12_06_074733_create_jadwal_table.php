@@ -13,10 +13,15 @@ class CreateJadwalTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('jadwal', function (Blueprint $table) {
-            $table->id('id_jadwal');
-            $table->unsignedBigInteger('id_user')->constrained()->onDelete('cascade');
-            $table->unsignedBigInteger('id_ruang')->constrained()->onDelete('cascade');
+            $table->id();
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('id_ruang');
+            $table->foreign('id_ruang')->references('id')->on('ruang')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

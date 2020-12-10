@@ -13,9 +13,12 @@ class CreateLaporanTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('laporan', function (Blueprint $table) {
-            $table->id('id_laporan');
-            $table->unsignedBigInteger('id_jadwal')->constrained()->onDelete('cascade');
+            $table->id();
+            $table->unsignedBigInteger('id_jadwal');
+            $table->foreign('id_jadwal')->references('id')->on('jadwal')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

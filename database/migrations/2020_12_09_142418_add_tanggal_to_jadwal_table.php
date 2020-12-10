@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateIdlaporanToId extends Migration
+class AddTanggalToJadwalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class UpdateIdlaporanToId extends Migration
      */
     public function up()
     {
-        Schema::table('laporan', function (Blueprint $table) {
-            $table->renameColumn('id_laporan', 'id');
+        Schema::enableForeignKeyConstraints();
+        Schema::table('jadwal', function (Blueprint $table) {
+            $table->date('tanggal');
         });
     }
 
@@ -25,11 +26,11 @@ class UpdateIdlaporanToId extends Migration
      */
     public function down()
     {
-        if (Schema::hasColumn('laporan', 'id'))
+        if (Schema::hasColumn('jadwal', 'tanggal'))
         {
-            Schema::table('laporan', function (Blueprint $table)
+            Schema::table('jadwal', function (Blueprint $table)
             {
-                $table->dropColumn('id');
+                $table->dropColumn('tanggal');
             });
         }
     }
