@@ -24,31 +24,25 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="manajer/ruang">
+              <a class="nav-link" href="{{route('manajer.ruang.index')}}">
                 <i class="ni ni-building text-orange"></i>
                 <span class="nav-link-text">Ruang</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="manajer/cs">
+              <a class="nav-link" href="{{route('manajer.cs.index')}}">
                 <i class="ni ni-single-02 text-primary"></i>
                 <span class="nav-link-text">Cleaning Service</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="manajer/jadwal">
+              <a class="nav-link" href="{{route('manajer.jadwal.index')}}">
                 <i class="ni ni-calendar-grid-58 text-yellow"></i>
                 <span class="nav-link-text">Jadwal</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="manajer/status-ruang">
-                <i class="ni ni-ruler-pencil text-green"></i>
-                <span class="nav-link-text">Status Kebersihan Ruang</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="manajer/laporan">
+              <a class="nav-link" href="{{route('manajer.laporan.index')}}">
                 <i class="ni ni-collection text-info"></i>
                 <span class="nav-link-text">Laporan</span>
               </a>
