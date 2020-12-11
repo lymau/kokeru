@@ -38,6 +38,7 @@ Route::get('/manajer/ruang', [RuangController::class, 'index'])->name('manajer.r
 Route::get('/manajer/cs', [CSController::class, 'index'])->name('manajer.cs.index');
 Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
 Route::post('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
+Route::get('/manajer/laporan', [JadwalController::class, 'index'])->name('manajer.laporan.index');
 
 Route::resource('ruang', RuangController::class);
 Route::resource('cs', CSController::class);
