@@ -7,6 +7,9 @@ use App\Http\Controllers\CS\DashboardController;
 use App\Http\Controllers\CS\ProfileController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\CSController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +47,15 @@ Route::get('/manajer', function(){
     return view('manajer.dashboard');
 })->name('manajer.dashboard');
 Route::get('/manajer/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
+Route::get('/manajer/cs', [CSController::class, 'index'])->name('manajer.cs.index');
+Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
+Route::post('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
+Route::get('/manajer/laporan', [JadwalController::class, 'index'])->name('manajer.laporan.index');
+
 Route::resource('ruang', RuangController::class);
+Route::resource('cs', CSController::class);
+Route::resource('jadwal', JadwalController::class);
+Route::resource('laporan', LaporanController::class);
 
 Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal');
 Route::get('/manajer/jadwal/tambah', [JadwalController::class, 'add'])->name('manajer.jadwal.add');
