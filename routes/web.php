@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\CS\DashboardController;
+use App\Http\Controllers\CS\ProfileController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\RuangController;
 
 /*
@@ -28,13 +31,25 @@ Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
 Route::post('/login', [LoginController::class, 'store']);
 
 // halaman manajer
+// Route::prefix('manajer')->group(function (){
+//     Route::get('/dashboard', function(){
+//         return view('manajer.dashboard')->name('manajer.dashboard');
+//     });
+//     Route::get('/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
+//     Route::resource('ruang', RuangController::class);
+//     Route::get('/manajer/jadwal');
+// });
+
 Route::get('/manajer', function(){
     return view('manajer.dashboard');
 })->name('manajer.dashboard');
 Route::get('/manajer/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
 Route::resource('ruang', RuangController::class);
 
-// dashboard cs
-Route::get('/cs', function(){
-    return view('cs.dashboard');
-})->name('cs.dashboard');
+Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal');
+Route::get('/manajer/jadwal/tambah', [JadwalController::class, 'add'])->name('manajer.jadwal.add');
+Route::post('/manajer/jadwal/tambah', [JadwalController::class, 'store']);
+
+// halaman cs
+Route::get('/cs', [DashboardController::class, 'index'])->name('cs.dashboard');
+Route::get('/cs/profil', [ProfileController::class, 'index'])->name('cs.profil');

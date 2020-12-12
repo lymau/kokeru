@@ -96,8 +96,14 @@
                     <input class="form-control" placeholder="Password" type="password" name="password">
                   </div>
                 </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id="remember" name="remember" type="checkbox">
+                  <label class="custom-control-label" for="remember">
+                    <span class="text-muted">Remember me</span>
+                  </label>
+                </div>
                 <div class="text-center">
-                  <input type="submit" name="submit" class="btn btn-primary my-4" value="Sign In"></input>
+                  <input type="submit" name="submit" class="btn btn-primary my-4" value="Sign In">
                 </div>
               </form>
             </div>
