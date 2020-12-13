@@ -42,9 +42,7 @@ Route::post('/login', [LoginController::class, 'store']);
 // });
 
 // dashboard manajer
-Route::get('/manajer', function(){
-    return view('manajer.dashboard');
-})->name('manajer.dashboard');
+Route::get('/manajer', [LaporanController::class, 'manajer'])->name('manajer.dashboard');
 Route::get('/manajer/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
 Route::get('/manajer/cs', [CSController::class, 'index'])->name('manajer.cs.index');
 Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
