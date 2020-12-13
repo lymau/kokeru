@@ -32,7 +32,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-bullet-list-67"></i></span>
                             </div>
-                            <input class="form-control" name="nama_ruang" placeholder="Nama Ruang (ex: R102)" type="text" required>
+                            <input class="form-control" name="nama_ruang" placeholder="Nama Ruang (ex: R102)" type="text" required minlength="3" maxlength="5">
                         </div>
                     </div>
                     <div class="text-center">
@@ -81,7 +81,6 @@
                   <tr>
                     <th scope="col" class="sort" data-sort="name">ID <i class="fas fa-sort"></th>
                     <th scope="col" class="sort">Nama Ruang <i class="fas fa-sort"></th>
-                    <th scope="col" class="sort">Status <i class="fas fa-sort"></th>
                     <th scope="col" class="sort">Aksi</th>
                   </tr>
                 </thead>
@@ -90,12 +89,6 @@
                   <tr>
                     <th scope="row">{{$r->id}}</th>
                     <td>{{$r->nama_ruang}}</td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>
-                        <span class="status">pending</span>
-                      </span>
-                    </td>
                     <td>
                       <a class="btn btn-warning btn-sm" href="{{route('ruang.edit', $r->id)}}">Edit</a>&nbsp;&nbsp; 
                       <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#konfirmDelete{{$r->id}}">Delete</a>

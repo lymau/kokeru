@@ -42,6 +42,7 @@ Route::post('/login', [LoginController::class, 'store']);
 //     Route::get('/manajer/jadwal');
 // });
 
+// dashboard manajer
 Route::get('/manajer', function(){
     return view('manajer.dashboard');
 })->name('manajer.dashboard');
@@ -49,7 +50,8 @@ Route::get('/manajer/ruang', [RuangController::class, 'index'])->name('manajer.r
 Route::get('/manajer/cs', [CSController::class, 'index'])->name('manajer.cs.index');
 Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
 Route::post('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
-Route::get('/manajer/laporan', [JadwalController::class, 'index'])->name('manajer.laporan.index');
+Route::get('/manajer/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
+Route::post('/manajer/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
 
 Route::resource('ruang', RuangController::class);
 Route::resource('cs', CSController::class);
@@ -64,3 +66,4 @@ Route::post('/manajer/jadwal/tambah', [JadwalController::class, 'store']);
 Route::get('/cs', [DashboardController::class, 'index'])->name('cs.dashboard');
 Route::post('/cs', [DashboardController::class, 'store']);
 Route::get('/cs/profil', [ProfileController::class, 'index'])->name('cs.profil');
+
