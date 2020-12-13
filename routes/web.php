@@ -57,10 +57,6 @@ Route::resource('cs', CSController::class);
 Route::resource('jadwal', JadwalController::class);
 Route::resource('laporan', LaporanController::class);
 
-Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal');
-Route::get('/manajer/jadwal/tambah', [JadwalController::class, 'add'])->name('manajer.jadwal.add');
-Route::post('/manajer/jadwal/tambah', [JadwalController::class, 'store']);
-
 // halaman cs
 Route::get('/cs', [DashboardController::class, 'index'])->name('cs.dashboard');
 Route::get('/cs/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
