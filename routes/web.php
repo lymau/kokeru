@@ -8,7 +8,6 @@ use App\Http\Controllers\CS\ProfileController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\CSController;
-use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\LaporanController;
 
 /*
@@ -63,4 +62,5 @@ Route::post('/manajer/jadwal/tambah', [JadwalController::class, 'store']);
 
 // halaman cs
 Route::get('/cs', [DashboardController::class, 'index'])->name('cs.dashboard');
+Route::post('/cs', [DashboardController::class, 'store']);
 Route::get('/cs/profil', [ProfileController::class, 'index'])->name('cs.profil');
