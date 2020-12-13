@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\CS\DashboardController;
-use App\Http\Controllers\CS\ProfileController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\RuangController;
 use App\Http\Controllers\CSController;
+use App\Http\Controllers\RuangController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CS\ProfileController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\UploadBuktiController;
+use App\Http\Controllers\CS\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,7 @@ use App\Http\Controllers\LaporanController;
 |
 */
 
-Route::get('/', function() {
-    return view('pages.home');
-})->name('pages.home');
+Route::get('/', [LaporanController::class, 'laporan'])->name('pages.home');
 
 // logout
 Route::get('/logout', [LogoutController::class, 'store'])->name('auth.logout');
@@ -64,6 +63,7 @@ Route::post('/manajer/jadwal/tambah', [JadwalController::class, 'store']);
 
 // halaman cs
 Route::get('/cs', [DashboardController::class, 'index'])->name('cs.dashboard');
-Route::post('/cs', [DashboardController::class, 'store']);
+Route::get('/cs/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
+Route::post('/cs/upload', [UploadBuktiController::class, 'store'])->name('cs.bukti.upload');
 Route::get('/cs/profil', [ProfileController::class, 'index'])->name('cs.profil');
 

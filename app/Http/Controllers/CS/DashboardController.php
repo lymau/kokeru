@@ -29,22 +29,28 @@ class DashboardController extends Controller
     public function store(Request $request){
         // validasi dulu
         $this->validate($request, [
-            'bukti1' => 'required',
-            'bukti1.' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'foto' => 'required',
+            'foto.*' => ['required', 'mimetypes:image/*', 'max:2048'],
+            'video' => ['mimetypes:video/*', 'max:2048']
         ]);
+        dd($request);
 
-        if ($request->hasFile('bukti1')){
-            foreach($request->file('bukti1') as $image){
-                $name = $image->getClientOriginalName();
-                $image->move(public_path().'/uploads', $name);
-                $data = $name;
+        if ($request->hasFile('foto')){
+            foreach($request->file('foto') as $key => $file){
+                $path = $file->store('/assets/uploads', 'public');
+                $name = $file->getClientOriginalName();
+
+                $insert[$key]['name'] = $name;
+                $insert[$key]['path'] = $path;
             }
         }
-
-        $bukti_model = new Bukti;
-        $bukti_model->filename = json_encode($data);
-        $bukti_model->save();
-        return back()->with('success', 'Sudah berhasil diupload');
+        
+        // $laporan_model = new Laporan;
+        // $laporan_model->store()
+        // $bukti_model = new Bukti;
+        // $bukti_model->nama_file = json_encode($insert);
+        // $bukti_model->save();
+        // return back()->with('success', 'Sudah berhasil diupload');
 
     }
 }

@@ -23,7 +23,11 @@
           </div>
         </div>
         <p class="mt-1 mb-0 text-center">
-          <button class="btn btn-sm btn-icon btn-neutral" data-toggle="modal" data-target="#modalImg">
+        <a class="btn btn-sm btn-icon btn-neutral" href="{{ route('cs.bukti', $ruang->id_ruang) }}">
+            <span class="btn-inner--icon"><i class="ni ni-send"></i></span>
+            <span class="btn-inner--text">Upload</span>
+          </a>
+          <button class="btn btn-sm btn-icon btn-neutral mt-2" data-toggle="modal" data-target="#modalImg">
             <span class="btn-inner--icon"><i class="ni ni-camera-compact"></i></span>
             <span class="btn-inner--text">Bukti</span>
           </button>
@@ -32,7 +36,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header col-xl-12">
-                  <h5 class="modal-title" id="exampleModalLabel">Upload Bukti</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Bukti</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -77,38 +81,27 @@
                     </div>
                 </div>
                 {{-- form upload --}}
-                <div class="row mt-5">
+                {{-- <div class="row mt-5">
                   <div class="col">
                     <p class="text-red"><b>Upload minimal 1 file *</b></p>
-                    {{-- form here --}}
                   <form action="{{ route('cs.dashboard') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                      <div class="custom-file mt-2">
-                        <input type="file" class="custom-file-input" name="bukti1" id="bukti1" lang="en">
-                        <label class="custom-file-label" for="bukti1">Select file</label>
+                    <p>Foto</p>
+                      <div class="custom-file mb-2">
+                        <input type="file" class="custom-file-input" name="foto[]" id="foto[]" lang="en" multiple>
+                        <label class="custom-file-label" for="foto[]">Select file</label>
                     </div>
-                        <div class="custom-file mt-2">
-                            <input type="file" class="custom-file-input" name="bukti2" id="bukti2" lang="en">
-                            <label class="custom-file-label" for="bukti2">Select file</label>
-                        </div>
-                        <div class="custom-file mt-2">
-                          <input type="file" class="custom-file-input" name="bukti3" id="bukti3" lang="en">
-                          <label class="custom-file-label" for="bukti3">Select file</label>
-                      </div>
-                      <div class="custom-file mt-2">
-                        <input type="file" class="custom-file-input" name="bukti4" id="bukti4" lang="en">
-                        <label class="custom-file-label" for="bukti4">Select file</label>
-                    </div>
-                    <div class="custom-file mt-2">
-                      <input type="file" class="custom-file-input" name="bukti5" id="bukti5" lang="en">
-                      <label class="custom-file-label" for="bukti5">Select file</label>
+                    <p>Video</p>
+                    <div class="custom-file mb-2">
+                      <input type="file" class="custom-file-input" name="video" id="video" lang="en">
+                      <label class="custom-file-label" for="video">Select file</label>
                   </div>
                   <div class="text-center">
                     <input type="submit" name="submit" class="btn btn-primary mt-4" value="Upload">
                   </div>
                     </form>
                   </div>
-                </div>
+                </div> --}}
                 {{-- endform --}}
                 </div>
                 <div class="modal-footer">
