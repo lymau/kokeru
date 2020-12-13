@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Page content -->
-    <div class="container-fluid mt--6">
+    <div class="container-fluid mt--6" style="height: 400px">
       <div class="row">
         <div class="row">
             <div class="col-xl-3 col-md-6">
@@ -11,8 +11,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Jumlah Customer Service</h5>
-                      <span class="h2 font-weight-bold mb-0"></span>
+                      <h5 class="card-title text-uppercase text-muted mb-0"> Customer Service</h5>
+                      <span class="h2 font-weight-bold mb-0">{{$user}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
@@ -29,8 +29,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Ruang</h5>
-                      <span class="h2 font-weight-bold mb-0"></span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Jumlah Semua Ruang</h5>
+                      <span class="h2 font-weight-bold mb-0">{{$ruang}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
@@ -48,7 +48,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Total Ruang Bersih</h5>
-                      <span class="h2 font-weight-bold mb-0"></span>
+                      <span class="h2 font-weight-bold mb-0">{{$bersih}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -66,7 +66,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Total Ruang Kotor</h5>
-                      <span class="h2 font-weight-bold mb-0"></span>
+                      <span class="h2 font-weight-bold mb-0">{{$kotor}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
