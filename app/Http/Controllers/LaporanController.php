@@ -53,7 +53,7 @@ class LaporanController extends Controller
                     FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
                     LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at = '$tgl') AS lap ON lap.id_jadwal = jadwal.id
                     LEFT JOIN users ON users.id = jadwal.id_user");
-                $filename = 'kokeru_semua'.$tgl;
+                $filename = 'kokeru_semua_'.$tgl;
             } else{ 
                 $awal = $request->tanggal_mulai;
                 $akhir = $request->tanggal_akhir;
@@ -155,68 +155,27 @@ class LaporanController extends Controller
         return view('pages.home', ['laporan' => $laporan, 'count' => $count, 'bukti' => $bukti]);
     }
 
+    public function manajer(){
+        if(auth()->user()->manajer==1){
+            $ruang = Ruang::count();
+            $user = User::where('manajer',0)->count();
+            $tgl = date('Y-m-d');       
+            $bersih = DB::select("SELECT COUNT(*) as jum
+                FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
+                LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at = '$tgl') AS lap ON lap.id_jadwal = jadwal.id
+                LEFT JOIN users ON users.id = jadwal.id_user WHERE lap.id_jadwal IS NOT NULL");
+            $kotor = $ruang-$bersih[0]->jum;
+            return view('manajer.dashboard', ['ruang' => $ruang, 'user' => $user, 'bersih' => $bersih[0]->jum, 'kotor' => $kotor]);
+        }
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Laporan  $laporan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Laporan $laporan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Laporan  $laporan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Laporan $laporan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Laporan  $laporan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Laporan $laporan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Laporan  $laporan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Laporan $laporan)
     {
         //
     }
