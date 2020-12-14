@@ -22,6 +22,7 @@ class JadwalController extends Controller
                 $jadwal = Jadwal::leftJoin('users','users.id','=','jadwal.id_user')
                                 ->leftJoin('ruang','ruang.id','=','jadwal.id_ruang')
                                 ->select('jadwal.*','users.nama_user','ruang.nama_ruang')
+                                ->orderBy('ruang.id')
                                 ->get();
                 $cs = User::where('manajer',0)->orderBy('nama_user')->get();
                 return view('manajer.jadwal', ['jadwal' => $jadwal, 'cs' => $cs]);
@@ -30,6 +31,7 @@ class JadwalController extends Controller
                     $jadwal = Jadwal::leftJoin('users','users.id','=','jadwal.id_user')
                                 ->leftJoin('ruang','ruang.id','=','jadwal.id_ruang')
                                 ->select('jadwal.*','users.nama_user','ruang.nama_ruang')
+                                ->orderBy('ruang.id')
                                 ->get();
                     $cs = User::where('manajer',0)->orderBy('nama_user')->get();
                     return view('manajer.jadwal', ['jadwal' => $jadwal, 'cs' => $cs,]);
@@ -38,6 +40,7 @@ class JadwalController extends Controller
                                     ->leftJoin('ruang','ruang.id','=','jadwal.id_ruang')
                                     ->select('jadwal.*','users.nama_user','ruang.nama_ruang')
                                     ->where('jadwal.id_user', $request->user)
+                                    ->orderBy('ruang.id')
                                     ->get();
                     $cs = User::where('manajer',0)->orderBy('nama_user')->get();
                     return view('manajer.jadwal', ['jadwal' => $jadwal, 'cs' => $cs,]);
@@ -113,7 +116,12 @@ class JadwalController extends Controller
      */
     public function edit(Jadwal $jadwal)
     {
-        //
+        $cs = User::where('manajer',0)->orderBy('nama_user')->get();
+        $ruang = Ruang::leftJoin('jadwal','ruang.id','=','jadwal.id_ruang')
+                                ->select('ruang.id','ruang.nama_ruang')
+                                ->whereNull('jadwal.id')
+                                ->get();
+        return view('manajer.edit-jadwal',['cs' => $cs, 'ruang' => $ruang, 'jadwal' => $jadwal]);
     }
 
     /**
@@ -123,9 +131,23 @@ class JadwalController extends Controller
      * @param  \App\Models\Jadwal  $jadwal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jadwal $jadwal)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'user' => 'required',
+            'ruang' => 'required',
+        ]);
+    
+        $update = Jadwal::where('id', $id)
+                    ->update(['id_user' => $request->user,
+                              'id_ruang' => $request->ruang]);
+        if($update){
+            return redirect()->route('manajer.jadwal.index')
+                             ->with('success','Jadwal berhasil diperbarui');
+        } else{
+            return redirect()->route('manajer.jadwal.index')
+                             ->with('failed','Jadwal gagal diperbarui');
+        }
     }
 
     /**
