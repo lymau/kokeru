@@ -79,6 +79,7 @@
                     <td>{{$r->nama_ruang}}</td>
                     <td>{{$r->nama_user}}</td>
                     <td>
+                      <a class="btn btn-warning btn-sm" href="{{route('jadwal.edit', $r->id)}}">Edit</a>&nbsp;&nbsp;
                       <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#konfirmDelete{{$r->id}}">Delete</a>
                     </td>
                   </tr>
