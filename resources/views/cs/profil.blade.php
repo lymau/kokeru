@@ -1,57 +1,70 @@
 @extends('layout.cs.content')
 
-@section('top-menu')
-<h6 class="h2 text-white d-inline-block mb-0">{{ $name }}</h6>
-@endsection
-
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
-      <div class="card bg-secondary border-0 mb-0">
-        <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-          <div class="btn-wrapper text-center">
-            <a href="#" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-              <span class="btn-inner--text">Github</span>
-            </a>
-            <a href="#" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-              <span class="btn-inner--text">Google</span>
-            </a>
-          </div>
-        </div>
-        <div class="card-body px-lg-5 py-lg-5">
-          <div class="text-center text-muted mb-4">
-            <small>Or sign in with credentials</small>
-          </div>
-          <form role="form">
-            <div class="form-group mb-3">
-              <div class="input-group input-group-merge input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+<!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col">
+          @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <span class="alert-text">{{ session('success') }}</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @endif
+          @if(session('failed'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <span class="alert-text">{{ session('failed') }}</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @endif
+
+          @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Whoops!</strong> Terjadi kesalahan<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+          <div class="card pb-5">
+            <!-- Card header -->
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Profil CS</h3>
                 </div>
-                <input class="form-control" placeholder="Email" type="email">
               </div>
             </div>
-            <div class="form-group">
-              <div class="input-group input-group-merge input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+            <div class="card-body">
+              <form action="{{route('cs.profil', $profile->nama_user)}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">ID</label>
+                    <input class="form-control" type="text" value="{{$profile->id}}" name="id" readonly>
                 </div>
-                <input class="form-control" placeholder="Password" type="password">
-              </div>
+                <div class="form-group">
+                    <label for="example-search-input" class="form-control-label">Nama</label>
+                    <input class="form-control" type="text" value="{{$profile->nama_user}}" name="nama_user" required minlength="5" maxlength="255">
+                </div>
+                <div class="form-group">
+                    <label for="example-search-input" class="form-control-label">Email</label>
+                    <input class="form-control" type="email" value="{{$profile->email}}" name="email" required minlength="15" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" value="Update" class="btn btn-primary">
+                    <a href="{{ route('cs.profil') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+              </form>
             </div>
-            <div class="custom-control custom-control-alternative custom-checkbox">
-              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-              <label class="custom-control-label" for=" customCheckLogin">
-                <span class="text-muted">Remember me</span>
-              </label>
-            </div>
-            <div class="text-center">
-              <button type="button" class="btn btn-primary my-4">Sign in</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
+    </div>
 @endsection
