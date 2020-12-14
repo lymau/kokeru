@@ -59,5 +59,6 @@ Route::resource('laporan', LaporanController::class);
 Route::get('/cs', [DashboardController::class, 'index'])->name('cs.dashboard');
 Route::get('/cs/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
 Route::post('/cs/upload', [UploadBuktiController::class, 'store'])->name('cs.bukti.upload');
-Route::get('/cs/profil', [ProfileController::class, 'index'])->name('cs.profil');
+Route::get('/cs/profil', [CSController::class, 'update'])->name('cs.profil');
 
+Route::get('/cs/profil', [CSController::class, 'index'])->name('cs.profil');

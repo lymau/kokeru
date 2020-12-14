@@ -18,6 +18,7 @@ class CSController extends Controller
         $cs = User::where('manajer', '=', 0)->get();
         $last = User::select('id')->orderByDesc('id')->limit(1)->get();
         return view('manajer.cs', ['cs' => $cs, 'last' => $last]);
+      
     }
 
     /**
@@ -73,12 +74,13 @@ class CSController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cs  $cs
+     * @param  \App\Models\Cs $cs
      * @return \Illuminate\Http\Response
      */
-    public function show(Cs $cs)
+    public function show()
     {
-        //
+        $profile = User::where('id', auth()->user()->id)->get();
+        return view('cs.profil', ['profile' => $profile]);
     }
 
     /**
@@ -87,10 +89,9 @@ class CSController extends Controller
      * @param  \App\Models\Cs  $cs
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nama_user)
     {
-        $cs = User::Find($id);
-        return view('manajer.edit-cs', compact('cs'));
+        return view('cs.profil', compact('profile'));
     }
 
     /**
@@ -111,10 +112,10 @@ class CSController extends Controller
                     ->update(['nama_user' => $request->nama_user,
                               'email' => $request->email]);
         if($update){
-            return redirect()->route('manajer.cs.index')
+            return redirect()->route('cs.profil')
                              ->with('success','Data cs berhasil diperbarui');
         } else{
-            return redirect()->route('manajer.cs.index')
+            return redirect()->route('cs.profil')
                              ->with('failed','Data cs gagal diperbarui');
         }
     }
