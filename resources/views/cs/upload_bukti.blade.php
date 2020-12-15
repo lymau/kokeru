@@ -2,7 +2,6 @@
 
 @section('top-menu')
     <h6 class="h2 text-white d-inline-block mb-0">{{ $time }}</h6>
-    <h6 class="h2 text-white d-inline-block mb-0">{{ $id_ruang }}</h6>
 @endsection
 
 @section('content')
@@ -31,7 +30,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Upload Bukti</h3>
+                <h3 class="mb-0">Upload Bukti Ruang R{{ $id_ruang }}</h3>
                 </div>
               </div>
             </div>
@@ -39,6 +38,9 @@
                 <form action="{{ route('cs.bukti.upload') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <p>Foto</p>
+                    @error('foto[]')
+                <small class="text-red">{{ $message }}</small>
+                    @enderror
                       <div class="custom-file mb-2">
                         <input type="file" class="custom-file-input" name="foto[]" id="foto[]" lang="en" multiple>
                         <label class="custom-file-label" for="foto[]">Select file</label>
