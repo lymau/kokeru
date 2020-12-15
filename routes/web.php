@@ -50,7 +50,7 @@ Route::resource('laporan', LaporanController::class);
 // halaman cs
 Route::prefix('cs')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('cs.dashboard');
-    Route::get('/{id_ruang}/upload/', [UploadBuktiController::class, 'index'])->name('cs.bukti');
+    Route::get('/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
     Route::post('/upload', [UploadBuktiController::class, 'store'])->name('cs.bukti.upload');
     Route::get('/profil', [CSController::class, 'index'])->name('cs.profil');
     Route::post('/profil', [CSController::class, 'update']);

@@ -11,8 +11,8 @@ class UploadBuktiController extends Controller
     public function index($id_ruang){
         Carbon::setLocale('id');
         $time = Carbon::now()->formatLocalized("%A, %d %B %Y");
-        $id_jadwal = $_GET['id_jadwal'];
-        return view('cs.upload_bukti', ['time' => $time, 'id_ruang' => $id_ruang, 'id_jadwal' => $id_jadwal]);
+        // $id_jadwal = $_GET['id_jadwal'];
+        return view('cs.upload_bukti', ['time' => $time, 'id_ruang' => $id_ruang);
     }
 
     public function store($id_jadwal, Request $request){        
