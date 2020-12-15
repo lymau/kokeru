@@ -38,7 +38,7 @@ class UploadBuktiController extends Controller
                             $tujuan = 'data_file';
                             $photo->move($tujuan,$filename);
                         }
-                        echo "Upload Successfully";
+                        echo "Upload foto berhasil";
                     }
                     else
                     {
@@ -47,7 +47,7 @@ class UploadBuktiController extends Controller
                 }
             }
             
-        $videofileExtension=['mp4','mkv','png','docx'];
+        $videofileExtension=['mp4','mkv','mpeg','docx'];
         $video = $request->file('video');
         $filename = time()."_".$video->getClientOriginalName();
         $extension = $video->getClientOriginalExtension();
@@ -59,6 +59,10 @@ class UploadBuktiController extends Controller
                 ]);
             $tujuan = 'data_file';
             $video->move($tujuan,$filename);
+            echo "Upload Video Berhasil";
+        }
+        else{
+            echo '<div class="alert alert-warning"><strong>Warning!</strong> Video tidak sesuai format</div>';
         }
 
     }
