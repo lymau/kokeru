@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<!-- Page content -->
+<!-- Page content --> 
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
@@ -36,7 +36,7 @@
               </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('cs.bukti.upload') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('cs.bukti.upload', $id_jadwal) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <p>Foto</p>
                     @error('foto[]')

@@ -23,7 +23,7 @@
           </div>
         </div>
         <p class="mt-1 mb-0 text-center">
-        <a class="btn btn-sm btn-icon btn-neutral" href="{{ route('cs.bukti', $ruang->id_ruang) }}">
+        <a class="btn btn-sm btn-icon btn-neutral" href="{{ route('cs.bukti', $ruang->id_ruang, $ruang->id]) }}">
             <span class="btn-inner--icon"><i class="ni ni-send"></i></span>
             <span class="btn-inner--text">Upload</span>
           </a>
