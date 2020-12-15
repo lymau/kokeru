@@ -31,7 +31,7 @@
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
               @if(Auth::user()->manajer)
-                <a href="manajer/profil" class="dropdown-item">
+                <a href="{{ route('manajer.profil') }}" class="dropdown-item">
               @else
                 <a href="{{ route('cs.profil') }}" class="dropdown-item">
               @endif

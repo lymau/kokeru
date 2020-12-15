@@ -89,9 +89,10 @@ class CSController extends Controller
      * @param  \App\Models\Cs  $cs
      * @return \Illuminate\Http\Response
      */
-    public function edit($nama_user)
+    public function edit($id)
     {
-        return view('cs.profil', compact('profile'));
+        $cs = User::Find($id);
+        return view('manajer.edit-cs', compact('cs'));
     }
 
     /**

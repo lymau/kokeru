@@ -37,7 +37,7 @@
               <span class="btn-inner--icon">
                 <i class="fas fa-newspaper mr-2"></i>
               </span>
-              <span class="nav-link-inner--text">Dashboard</span>
+              <span class="nav-link-inner--text">Home</span>
             </a>
           </li>
         </ul>

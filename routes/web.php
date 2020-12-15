@@ -6,7 +6,7 @@ use App\Http\Controllers\RuangController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CS\ProfileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\UploadBuktiController;
 use App\Http\Controllers\CS\DashboardController;
@@ -40,6 +40,8 @@ Route::prefix('manajer')->group(function (){
     Route::post('/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
     Route::get('/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
     Route::post('/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
+    Route::get('/profil', [ProfileController::class, 'index'])->name('manajer.profil');
+    Route::patch('/profil', [ProfileController::class, 'store']);
 });
 
 Route::resource('ruang', RuangController::class);
