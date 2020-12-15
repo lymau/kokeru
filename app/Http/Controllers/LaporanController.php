@@ -18,7 +18,6 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
         
@@ -166,8 +165,12 @@ class LaporanController extends Controller
                 LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at = '$tgl') AS lap ON lap.id_jadwal = jadwal.id
                 LEFT JOIN users ON users.id = jadwal.id_user WHERE lap.id_jadwal IS NOT NULL");
             $kotor = $ruang-$bersih[0]->jum;
-            return view('manajer.dashboard', ['ruang' => $ruang, 'user' => $user, 'bersih' => $bersih[0]->jum, 'kotor' => $kotor]);
+            $chart = DB::select("SELECT CAST(laporan.created_at AS DATE) AS label, 
+                COUNT(laporan.id_jadwal) as frec FROM laporan GROUP BY 
+                CAST(laporan.created_at AS DATE) ORDER BY label LIMIT 7");
+            return view('manajer.dashboard', ['ruang' => $ruang, 'user' => $user, 'bersih' => $bersih[0]->jum, 'kotor' => $kotor, 'chart' => $chart]);
         }
+
     }
 
     /**
