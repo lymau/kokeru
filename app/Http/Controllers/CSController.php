@@ -47,12 +47,7 @@ class CSController extends Controller
         
         $rand = Str::random(8);
         $pw = bcrypt($rand);
-        $store = User::create(['id' => $request->id,
-                             'nama_user' => $request->nama_user,
-                             'email' => $request->email,
-                             'password' => $pw,
-                             'manajer' => 0,
-        ]);
+        $store = DB::insert('insert into users (id,nama_user,email,password,manajer) values (?,?,?,?,?)', [$request->id, $request->nama_user, $request->email, $pw, 0]);
         if($store){
             $details = [
                 'title' => 'Akun Cleaning Service Kokeru',
