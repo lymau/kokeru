@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\UploadBuktiController;
 use App\Http\Controllers\CS\DashboardController;
+use App\Http\Controllers\CS\ProfileCSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\CS\DashboardController;
 |
 */
 
-Route::get('/home', [LaporanController::class, 'laporan'])->name('pages.home');
+Route::get('/home', [LaporanController::class, 'laporan'])->middleware('guest')->name('pages.home');
 
 // logout
 Route::get('/logout', [LogoutController::class, 'store'])->name('auth.logout');
@@ -32,10 +33,11 @@ Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
 Route::post('/login', [LoginController::class, 'store']);
 
 // halaman manajer
-Route::prefix('manajer')->group(function (){
+Route::prefix('manajer')->middleware(['manajer'])->group(function (){
     Route::get('/', [LaporanController::class, 'manajer'])->name('manajer.dashboard');
     Route::get('/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
     Route::get('/cs', [CSController::class, 'index'])->name('manajer.cs.index');
+    Route::post('/cs', [CSController::class, 'update']);
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
     Route::post('/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
     Route::get('/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
@@ -50,11 +52,10 @@ Route::resource('jadwal', JadwalController::class);
 Route::resource('laporan', LaporanController::class);
 
 // halaman cs
-Route::prefix('cs')->group(function(){
+Route::prefix('cs')->middleware(['cs'])->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('cs.dashboard');
     Route::get('/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
     Route::post('/upload', [UploadBuktiController::class, 'store'])->name('cs.bukti.upload');
-    Route::get('/profil', [CSController::class, 'index'])->name('cs.profil');
-    Route::post('/profil', [CSController::class, 'update']);
+    Route::get('/profil', [ProfileCSController::class, 'index'])->name('cs.profil');
 });
 
