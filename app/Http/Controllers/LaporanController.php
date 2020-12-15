@@ -18,6 +18,7 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         
@@ -167,7 +168,6 @@ class LaporanController extends Controller
             $kotor = $ruang-$bersih[0]->jum;
             return view('manajer.dashboard', ['ruang' => $ruang, 'user' => $user, 'bersih' => $bersih[0]->jum, 'kotor' => $kotor]);
         }
-
     }
 
     /**

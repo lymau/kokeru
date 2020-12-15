@@ -22,7 +22,7 @@ use App\Http\Controllers\CS\DashboardController;
 |
 */
 
-Route::get('/', [LaporanController::class, 'laporan'])->name('pages.home');
+Route::get('/home', [LaporanController::class, 'laporan'])->name('pages.home');
 
 // logout
 Route::get('/logout', [LogoutController::class, 'store'])->name('auth.logout');
@@ -32,23 +32,15 @@ Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
 Route::post('/login', [LoginController::class, 'store']);
 
 // halaman manajer
-// Route::prefix('manajer')->group(function (){
-//     Route::get('/dashboard', function(){
-//         return view('manajer.dashboard')->name('manajer.dashboard');
-//     });
-//     Route::get('/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
-//     Route::resource('ruang', RuangController::class);
-//     Route::get('/manajer/jadwal');
-// });
-
-// dashboard manajer
-Route::get('/manajer', [LaporanController::class, 'manajer'])->name('manajer.dashboard');
-Route::get('/manajer/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
-Route::get('/manajer/cs', [CSController::class, 'index'])->name('manajer.cs.index');
-Route::get('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
-Route::post('/manajer/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
-Route::get('/manajer/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
-Route::post('/manajer/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
+Route::prefix('manajer')->group(function (){
+    Route::get('/', [LaporanController::class, 'manajer'])->name('manajer.dashboard');
+    Route::get('/ruang', [RuangController::class, 'index'])->name('manajer.ruang.index');
+    Route::get('/cs', [CSController::class, 'index'])->name('manajer.cs.index');
+    Route::get('/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
+    Route::post('/jadwal', [JadwalController::class, 'index'])->name('manajer.jadwal.index');
+    Route::get('/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
+    Route::post('/laporan', [LaporanController::class, 'indexMan'])->name('manajer.laporan.index');
+});
 
 Route::resource('ruang', RuangController::class);
 Route::resource('cs', CSController::class);
@@ -56,9 +48,11 @@ Route::resource('jadwal', JadwalController::class);
 Route::resource('laporan', LaporanController::class);
 
 // halaman cs
-Route::get('/cs', [DashboardController::class, 'index'])->name('cs.dashboard');
-Route::get('/cs/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
-Route::post('/cs/upload', [UploadBuktiController::class, 'store'])->name('cs.bukti.upload');
-Route::get('/cs/profil', [CSController::class, 'update'])->name('cs.profil');
+Route::prefix('cs')->group(function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('cs.dashboard');
+    Route::get('/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
+    Route::post('/upload', [UploadBuktiController::class, 'store'])->name('cs.bukti.upload');
+    Route::get('/profil', [CSController::class, 'index'])->name('cs.profil');
+    Route::post('/profil', [CSController::class, 'update']);
+});
 
-Route::get('/cs/profil', [CSController::class, 'index'])->name('cs.profil');

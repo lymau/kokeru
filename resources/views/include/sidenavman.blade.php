@@ -11,12 +11,7 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('pages.home')}}">
-                <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">Dashboard</span>
-              </a>
-            </li>
+            @if (auth()->user()->manajer==1)
             <li class="nav-item">
               <a class="nav-link" href="{{route('manajer.dashboard')}}">
                 <i class="fas fa-home text-purple"></i>
@@ -47,6 +42,14 @@
                 <span class="nav-link-text">Laporan</span>
               </a>
             </li>
+            @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('cs.dashboard')}}">
+                <i class="fas fa-home text-purple"></i>
+                <span class="nav-link-text">Home</span>
+              </a>
+            </li>
+            @endif
           </ul>
         </div>
       </div>
