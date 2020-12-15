@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bukti;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -11,12 +12,54 @@ class UploadBuktiController extends Controller
         Carbon::setLocale('id');
         $time = Carbon::now()->formatLocalized("%A, %d %B %Y");
 
-        dd($id);
-
-        return view('cs.upload_bukti', ['time' => $time, 'id_ruang' => $id_ruang]);
+        return view('cs.upload_bukti', ['time' => $time, 'id_ruang' => $id]);
     }
 
-    public function store(){
+    public function store(Request $request){        
+        $idlap = 1;
+        if($request->hasFile('foto'))
+        {   
+            $allowedfileExtension=['pdf','jpg','png','docx'];
+            $files = $request->file('foto');
+            foreach($files as $file){
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $check=in_array($extension,$allowedfileExtension);
+                //dd($check);
+                if($check)
+                {
+                    
+                    foreach ($request->foto as $photo) {
+                        $filename = time()."_".$photo->getClientOriginalName();
+                        Bukti::create([
+                            'id_laporan' => $idlap,
+                            'nama_file' => $filename
+                            ]);
+                            $tujuan = 'data_file';
+                            $photo->move($tujuan,$filename);
+                        }
+                        echo "Upload Successfully";
+                    }
+                    else
+                    {
+                        echo '<div class="alert alert-warning"><strong>Warning!</strong> Foto tidak sesuai format</div>';
+                    }
+                }
+            }
+            
+        $videofileExtension=['mp4','mkv','png','docx'];
+        $video = $request->file('video');
+        $filename = time()."_".$video->getClientOriginalName();
+        $extension = $video->getClientOriginalExtension();
+        $check=in_array($extension,$videofileExtension);
+        if($check){
+            Bukti::create([
+                'id_laporan' => $idlap,
+                'nama_file' => $filename
+                ]);
+            $tujuan = 'data_file';
+            $video->move($tujuan,$filename);
+        }
 
     }
 }

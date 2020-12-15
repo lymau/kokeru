@@ -1,8 +1,8 @@
 @extends('layout.manajer.content')
 
 @section('top-menu')
-    <h6 class="h2 text-white d-inline-block mb-0">{{ $time }}</h6>
-    <h6 class="h2 text-white d-inline-block mb-0">{{ $id_ruang }}</h6>
+    <h6 class="h2 text-white d-inline-block mb-0">Ruang {{ $id_ruang }}</h6><br>
+    <p class="text-dark">{{ $time }}</p>
 @endsection
 
 @section('content')
