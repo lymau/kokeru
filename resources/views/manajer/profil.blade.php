@@ -1,4 +1,4 @@
-@extends('layout.manajer.content')
+    @extends('layout.manajer.content')
 
 @section('content')
 <!-- Page content -->
@@ -42,29 +42,37 @@
               </div>
             </div>
             <div class="card-body">
+            @if(Auth::user()->manajer)
             <form action="{{ route('manajer.profil') }}" method="POST">
+            @else
+            <form action="{{ route('update-akun') }}" method="POST">
+            @endif
                 @csrf
                 @method('patch')
-              <input type="hidden" name="id_user" value="{{ $manajer->id }}">
+              <input type="hidden" name="id_user" value="{{ $profil->id }}">
                 <div class="form-group">
                   <label for="nama" class="form-control-label">Nama</label>
-                <input class="form-control" type="text" value="{{ $manajer->nama_user }}" name="nama" id="nama" required>
+                <input class="form-control" type="text" value="{{ $profil->nama_user }}" name="nama" id="nama" required>
               </div>
               <div class="form-group">
                 <label for="email" class="form-control-label">Email</label>
-              <input class="form-control" type="email" value="{{ $manajer->email}}" name="email" id="email" required>
+              <input class="form-control" type="email" value="{{ $profil->email}}" name="email" id="email" required>
             </div>
             <div class="form-group">
-              <label for="password" class="form-control-label">Password <small class="text-muted"></small></label>
-              <input class="form-control" type="password" name="password" id="password" minlength="8" required>
+              <label for="password" class="form-control-label">Password lama <small class="text-muted"></small></label>
+              <input class="form-control" type="password" name="password" id="password" minlength="8">
           </div>
           <div class="form-group">
-            <label for="password_confirmation" class="form-control-label">Re-type Password</label>
-            <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" required>
+            <label for="password_confirmation" class="form-control-label">Password baru</label>
+            <input class="form-control" type="password" name="password_new" id="password_new">
         </div>
         <div class="form-group">
           <input type="submit" name="submit" value="Update" class="btn btn-primary">
-          <a href="{{ route('manajer.cs.index') }}" class="btn btn-secondary">Cancel</a>
+          @if(Auth::user()->manajer)
+          <a href="{{ route('manajer.dashboard') }}" class="btn btn-secondary">Cancel</a>
+          @else
+          <a href="{{ route('akun') }}" class="btn btn-secondary">Cancel</a>
+          @endif
       </div>
               </form>
             </div>
