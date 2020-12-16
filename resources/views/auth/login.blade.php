@@ -8,9 +8,7 @@
   <!-- Navbar -->
   <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="">
-        <img src="../assets/img/brand/white.png">
-      </a>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -110,7 +108,7 @@
           </div>
           <div class="row mt-2">
             <div class="col-6">
-              <a href="#" class="text-light"><small>Forgot password?</small></a>
+              
             </div>
           </div>
         </div>
