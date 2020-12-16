@@ -2,7 +2,11 @@
 <html>
 <head>
   @include('include.meta')
+  @if(Auth::user()->manajer)
   <title>Kokeru | Manajer</title>
+  @else
+  <title>Kokeru | CS</title>
+  @endif
 </head>
 <body>
   <!-- Sidenav -->
