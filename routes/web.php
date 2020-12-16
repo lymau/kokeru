@@ -23,7 +23,9 @@ use App\Http\Controllers\CS\DashboardController;
 */
 
 Route::get('/home', [LaporanController::class, 'laporan'])->middleware('guest')->name('pages.home');
-
+Route::get('/', function(){
+    return redirect()->route('pages.home');
+});
 // logout
 Route::get('/logout', [LogoutController::class, 'store'])->name('auth.logout');
 
