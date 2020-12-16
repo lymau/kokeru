@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CSController extends Controller
 {
@@ -48,12 +49,7 @@ class CSController extends Controller
         
         $rand = Str::random(8);
         $pw = bcrypt($rand);
-        $store = User::create(['id' => $request->id,
-                             'nama_user' => $request->nama_user,
-                             'email' => $request->email,
-                             'password' => $pw,
-                             'manajer' => 0,
-        ]);
+        $store = DB::insert('insert into users (id,nama_user,email,password,manajer) values (?,?,?,?,?)', [$request->id, $request->nama_user, $request->email, $pw, 0]);
         if($store){
             $details = [
                 'title' => 'Akun Cleaning Service Kokeru',
@@ -80,8 +76,8 @@ class CSController extends Controller
      */
     public function show()
     {
-        $profile = User::where('id', auth()->user()->id)->get();
-        return view('cs.profil', ['profile' => $profile]);
+        $cs = Auth::user();
+        return view('cs.profil', ['cs' => $cs]);
     }
 
     /**
@@ -114,10 +110,10 @@ class CSController extends Controller
                     ->update(['nama_user' => $request->nama_user,
                               'email' => $request->email]);
         if($update){
-            return redirect()->route('cs.profil')
+            return redirect()->route('manajer.cs.index')
                              ->with('success','Data cs berhasil diperbarui');
         } else{
-            return redirect()->route('cs.profil')
+            return redirect()->route('manajer.cs.index')
                              ->with('failed','Data cs gagal diperbarui');
         }
     }
