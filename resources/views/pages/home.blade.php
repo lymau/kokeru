@@ -119,7 +119,7 @@
                   </div>
                 </div>
                 <p class="mt-1 mb-0 text-center">
-                  <button class="btn btn-sm btn-icon btn-neutral">
+                  <button class="btn btn-sm btn-icon btn-neutral" disabled>
                     <span class="btn-inner--icon"><i class="ni ni-camera-compact"></i></span>
                     <span class="btn-inner--text">Belum Ada</span>
                   </button>
