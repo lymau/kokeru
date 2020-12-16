@@ -10,7 +10,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\UploadBuktiController;
 use App\Http\Controllers\CS\DashboardController;
-use App\Http\Controllers\CS\ProfileCSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +55,8 @@ Route::prefix('cs')->middleware(['cs'])->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('cs.dashboard');
     Route::get('/{id_ruang}/upload', [UploadBuktiController::class, 'index'])->name('cs.bukti');
     Route::post('/upload', [UploadBuktiController::class, 'store'])->name('cs.bukti.upload');
-    Route::get('/profil', [ProfileCSController::class, 'index'])->name('cs.profil');
+    Route::get('/profil', [ProfileController::class, 'index'])->name('cs.profil');
 });
+Route::get('akun', [ProfileController::class, 'index'])->name('akun');
+Route::patch('/update-akun', [ProfileController::class, 'store'])->name('update-akun');
 
