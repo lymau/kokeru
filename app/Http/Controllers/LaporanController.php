@@ -30,7 +30,7 @@ class LaporanController extends Controller
                 $tgl = date('Y-m-d');       
                 $laporan = DB::select("SELECT lap.id_jadwal, ruang.nama_ruang, users.nama_user 
                     FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
-                    LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at = '$tgl') AS lap ON lap.id_jadwal = jadwal.id
+                    LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at LIKE '$tgl%') AS lap ON lap.id_jadwal = jadwal.id
                     LEFT JOIN users ON users.id = jadwal.id_user");
                 $filename = 'kokeru_semua_'.$tgl.'.pdf';
             } else{ 
@@ -51,7 +51,7 @@ class LaporanController extends Controller
                 $tgl = date('Y-m-d');       
                 $laporan = DB::select("SELECT lap.id_jadwal, ruang.nama_ruang, users.nama_user 
                     FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
-                    LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at = '$tgl') AS lap ON lap.id_jadwal = jadwal.id
+                    LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at LIKE '$tgl%') AS lap ON lap.id_jadwal = jadwal.id
                     LEFT JOIN users ON users.id = jadwal.id_user");
                 $filename = 'kokeru_semua_'.$tgl;
             } else{ 
@@ -124,7 +124,7 @@ class LaporanController extends Controller
             $tgl = date('Y-m-d');       
             $laporan = DB::select("SELECT lap.id, lap.id_jadwal, ruang.id AS id_ruang, ruang.nama_ruang, lap.created_at, users.nama_user 
                 FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
-                LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at = '$tgl') AS lap ON lap.id_jadwal = jadwal.id
+                LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at LIKE '$tgl%') AS lap ON lap.id_jadwal = jadwal.id
                 LEFT JOIN users ON users.id = jadwal.id_user");
             return view('manajer.laporan', ['laporan' => $laporan, 'awal'=> $tgl, 'akhir' => $tgl, 'status' => 'all']);
         } else{
