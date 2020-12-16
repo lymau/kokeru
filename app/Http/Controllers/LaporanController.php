@@ -162,7 +162,7 @@ class LaporanController extends Controller
             $tgl = date('Y-m-d');       
             $bersih = DB::select("SELECT COUNT(*) as jum
                 FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
-                LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at = '$tgl') AS lap ON lap.id_jadwal = jadwal.id
+                LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at LIKE '$tgl%') AS lap ON lap.id_jadwal = jadwal.id
                 LEFT JOIN users ON users.id = jadwal.id_user WHERE lap.id_jadwal IS NOT NULL");
             $kotor = $ruang-$bersih[0]->jum;
             $chart = DB::select("SELECT CAST(laporan.created_at AS DATE) AS label, 
