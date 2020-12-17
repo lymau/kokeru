@@ -20,9 +20,17 @@ class DashboardController extends Controller
         $id = Auth::id();
         $jadwal = DB::table('jadwal')->where('id_user', $id)->get();
 
+        $date = date('Y-m-d');
+        $laporan = DB::select("SELECT lap.id, lap.id_jadwal, ruang.id AS id_ruang, ruang.nama_ruang, lap.created_at, users.nama_user 
+            FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
+            LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at LIKE '$date%') AS lap ON lap.id_jadwal = jadwal.id
+            LEFT JOIN users ON users.id = jadwal.id_user WHERE users.id = '$id'");
+        $bukti = DB::select("SELECT * FROM bukti WHERE created_at LIKE '$date%'");
+
         return view('cs.dashboard', [
             'time' => $time,
-            'jadwal' => $jadwal
+            'laporan' => $laporan,
+            'bukti' => $bukti
         ]);
     }
 }
