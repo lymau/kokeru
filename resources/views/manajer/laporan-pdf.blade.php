@@ -68,9 +68,12 @@
 	</div>
 	<table class="table">
 		<tr>
-			<th style="width:10%">No</th>
-			<th style="width:20%">Nama Ruang</th>
-			<th style="width:50%">Nama CS</th>
+			<th style="width:5%">No</th>
+			@if($awal!=$akhir)
+				<th style="width:15%">Tanggal</th>
+			@endif
+			<th style="width:15%">Ruang</th>
+			<th style="width:45%">Nama CS</th>
 			<th style="width:20%">Status</th>
 		</tr>
 		<?php $i = 1;?>
@@ -79,6 +82,9 @@
                     @if(isset($r->id_jadwal))
                         <tr>
                           <td class="center">{{$i}}</td>
+                          @if($awal!=$akhir)
+                            <td><?=(isset($r->date))?$r->date:date('Y-m-d')?></td>
+                          @endif
                           <td class="center">{{$r->nama_ruang}}</td>
                           <td> 
                             {{(isset($r->nama_user)) ? $r->nama_user : 'Belum ada cs'}}
@@ -93,6 +99,9 @@
                     @if(!isset($r->id_jadwal))
                         <tr>
                           <td class="center">{{$i}}</td>
+                          @if($awal!=$akhir)
+                            <td><?=(isset($r->date))?$r->date:date('Y-m-d')?></td>
+                          @endif
                           <td class="center">{{$r->nama_ruang}}</td>
                           <td> 
                             {{(isset($r->nama_user)) ? $r->nama_user : 'Belum ada cs'}}
@@ -106,6 +115,9 @@
                 @foreach($laporan as $r)
                     <tr>
                         <td class="center">{{$i}}</td>
+                        @if($awal!=$akhir)
+                            <td><?=(isset($r->date))?$r->date:date('Y-m-d')?></td>
+                          @endif
                         <td class="center">{{$r->nama_ruang}}</td>
                         <td> 
                           {{(isset($r->nama_user)) ? $r->nama_user : 'Belum ada cs'}}

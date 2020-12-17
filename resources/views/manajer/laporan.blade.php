@@ -72,6 +72,9 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">No</th>
+                    @if($awal!=$akhir)
+                      <th scope="col" class="sort">Tanggal<i class="fas fa-sort"></th>
+                    @endif
                     <th scope="col" class="sort">Ruang<i class="fas fa-sort"></th>
                     <th scope="col" class="sort">CS<i class="fas fa-sort"></th>
                     <th scope="col" class="sort">Status<i class="fas fa-sort"></th>
@@ -84,6 +87,9 @@
                       @if(isset($r->id_jadwal))
                         <tr>
                           <th scope="row">{{$i}}</th>
+                          @if($awal!=$akhir)
+                            <td><?=(isset($r->date))?$r->date:date('Y-m-d')?></td>
+                          @endif
                           <td>{{$r->nama_ruang}}</td>
                           <td> 
                             {{(isset($r->nama_user)) ? $r->nama_user : 'Belum ada cs'}}
@@ -98,6 +104,9 @@
                       @if(!isset($r->id_jadwal))
                         <tr>
                           <th scope="row">{{$i}}</th>
+                          @if($awal!=$akhir)
+                            <td><?=(isset($r->date))?$r->date:date('Y-m-d')?></td>
+                          @endif
                           <td>{{$r->nama_ruang}}</td>
                           <td> 
                             {{(isset($r->nama_user)) ? $r->nama_user : 'Belum ada cs'}}
@@ -111,6 +120,9 @@
                     @foreach($laporan as $r)
                       <tr>
                         <th scope="row">{{$i}}</th>
+                          @if($awal!=$akhir)
+                            <td><?=(isset($r->date))?$r->date:date('Y-m-d')?></td>
+                          @endif
                         <td>{{$r->nama_ruang}}</td>
                         <td> 
                           {{(isset($r->nama_user)) ? $r->nama_user : 'Belum ada cs'}}
