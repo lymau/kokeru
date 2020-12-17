@@ -170,7 +170,7 @@ class LaporanController extends Controller
             $kotor = $ruang-$bersih[0]->jum;
             $chart = DB::select("SELECT CAST(laporan.created_at AS DATE) AS label, 
                 COUNT(laporan.id_jadwal) as frec FROM laporan GROUP BY 
-                CAST(laporan.created_at AS DATE) ORDER BY label LIMIT 7");
+                CAST(laporan.created_at AS DATE) ORDER BY label DESC LIMIT 7");
             return view('manajer.dashboard', ['ruang' => $ruang, 'user' => $user, 'bersih' => $bersih[0]->jum, 'kotor' => $kotor, 'chart' => $chart]);
         }
 
