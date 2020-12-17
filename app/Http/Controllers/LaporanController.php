@@ -36,10 +36,11 @@ class LaporanController extends Controller
             } else{ 
                 $awal = $request->tanggal_mulai;
                 $akhir = $request->tanggal_akhir;
+                $akhirr = date('Y-m-d', strtotime($akhir. '+ 1 days'));
                 $status = $request->status;
-                $laporan = DB::select("SELECT lap.id_jadwal, ruang.nama_ruang, users.nama_user 
+                $laporan = DB::select("SELECT lap.id_jadwal, ruang.nama_ruang, users.nama_user
                         FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
-                        LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at BETWEEN '$awal' AND '$akhir') AS lap ON lap.id_jadwal = jadwal.id
+                        LEFT JOIN (SELECT *, CAST(laporan.created_at AS DATE) FROM laporan WHERE laporan.created_at BETWEEN '$awal' AND '$akhirr') AS lap ON lap.id_jadwal = jadwal.id
                         LEFT JOIN users ON users.id = jadwal.id_user");
                 $filename = 'kokeru_'.$status.'_'.$awal.'_'.$akhir.'.pdf';
             }
@@ -57,10 +58,11 @@ class LaporanController extends Controller
             } else{ 
                 $awal = $request->tanggal_mulai;
                 $akhir = $request->tanggal_akhir;
+                $akhirr = date('Y-m-d', strtotime($akhir. '+ 1 days'));
                 $status = $request->status;
-                $laporan = DB::select("SELECT lap.id_jadwal, ruang.nama_ruang, users.nama_user 
+                $laporan = DB::select("SELECT lap.id_jadwal, ruang.nama_ruang, users.nama_user
                         FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
-                        LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at BETWEEN '$awal' AND '$akhir') AS lap ON lap.id_jadwal = jadwal.id
+                        LEFT JOIN (SELECT *, CAST(laporan.created_at AS DATE) FROM laporan WHERE laporan.created_at BETWEEN '$awal' AND '$akhirr') AS lap ON lap.id_jadwal = jadwal.id
                         LEFT JOIN users ON users.id = jadwal.id_user");
                 $filename = 'kokeru_'.$status.'_'.$awal.'_'.$akhir;
             }
@@ -130,11 +132,12 @@ class LaporanController extends Controller
         } else{
             $awal = $request->tanggal_mulai;
             $akhir = $request->tanggal_akhir;
+            $akhirr = date('Y-m-d', strtotime($akhir. '+ 1 days'));
             $status = $request->status;
-            $laporan = DB::select("SELECT lap.id, lap.id_jadwal, ruang.id AS id_ruang, ruang.nama_ruang, lap.created_at, users.nama_user 
-                    FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
-                    LEFT JOIN (SELECT * FROM laporan WHERE laporan.created_at BETWEEN '$awal' AND '$akhir') AS lap ON lap.id_jadwal = jadwal.id
-                    LEFT JOIN users ON users.id = jadwal.id_user");
+            $laporan = DB::select("SELECT lap.id_jadwal, ruang.nama_ruang, users.nama_user
+                        FROM ruang LEFT JOIN jadwal ON ruang.id = jadwal.id_ruang
+                        LEFT JOIN (SELECT *, CAST(laporan.created_at AS DATE) FROM laporan WHERE laporan.created_at BETWEEN '$awal' AND '$akhirr') AS lap ON lap.id_jadwal = jadwal.id
+                        LEFT JOIN users ON users.id = jadwal.id_user");
             
             return view('manajer.laporan', ['laporan' => $laporan, 'awal'=> $awal, 'akhir' => $akhir,'status' => $status]);
         }
