@@ -60,7 +60,7 @@
             </div>
             <div class="form-group">
               <label for="password" class="form-control-label">Password lama <small class="text-muted"></small></label>
-              <input class="form-control" type="password" name="password" id="password" minlength="8">
+              <input class="form-control" type="password" name="password" id="password" minlength="5">
           </div>
           <div class="form-group">
             <label for="password_confirmation" class="form-control-label">Password baru</label>
