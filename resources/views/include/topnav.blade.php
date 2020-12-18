@@ -19,9 +19,9 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
 
-                <div class="media-body  ml-2  d-none d-lg-block">
+                <!--  <div class="media-body  ml-2  d-none d-lg-block"> -->
                   <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->nama_user}} | {{(Auth::user()->manajer) ? 'Manajer' : 'CS'}}</span>
-                </div>
+<!--                 </div> -->
               </div>
             </a>
             <div class="dropdown-menu  dropdown-menu-right ">
