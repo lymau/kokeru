@@ -94,11 +94,13 @@
                   $i++;
                 }
             ?>
-            <canvas id="myChart" width="400" height="100"></canvas>
+            <canvas id="myChart" style ="width:400; height:100%; position: relative;"></canvas>
               <script>
               var ctx = document.getElementById('myChart').getContext('2d');
               var myChart = new Chart(ctx, {
                   type: 'bar',
+                  responsive: true,
+                  maintainAspectRatio: true,
                   data: {
                       labels: <?=json_encode($label);?>,
                       datasets: [{
