@@ -22,15 +22,14 @@ use App\Http\Controllers\CS\DashboardController;
 |
 */
 
-Route::get('/home', [LaporanController::class, 'laporan'])->middleware('guest')->name('pages.home');
-Route::get('/', function(){
-    return redirect()->route('pages.home');
-});
+Route::get('/', [LaporanController::class, 'laporan']);
+Route::get('/home', [LaporanController::class, 'laporan'])->name('pages.home');
+
 // logout
 Route::get('/logout', [LogoutController::class, 'store'])->name('auth.logout');
 
 // auth
-Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('auth.login');
 Route::post('/login', [LoginController::class, 'store']);
 
 // halaman manajer
